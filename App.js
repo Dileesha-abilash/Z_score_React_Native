@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, Button, Modal, TouchableOpacity } from 'react-native';
+import { View, Text, Button, Modal, TouchableOpacity,TextInput } from 'react-native';
 import tw from 'twrnc';
 import { SelectList } from 'react-native-dropdown-select-list'
 
 
 const App = () => {
-  const [selected1, setSelected1] = useState("");
-  const [selected2, setSelected2] = useState("");
-  const [selected3, setSelected3] = useState("");
-  const [district, setDistrict] = useState("");
-  const [zzz, setZed] = useState("");
+  const [selected1, setSelected1] = useState("Subject 1");
+  const [selected2, setSelected2] = useState("Subject 1");
+  const [selected3, setSelected3] = useState("Subject 1");
+  const [district, setDistrict] = useState("district");
+  const [zzz, setZed] = useState("enter ");
   const [basi, setBasi] = useState(0.2);
 
   const [isLoading, setlsLoading] = useState(false);
@@ -20,6 +20,12 @@ const App = () => {
   const [modal2Visible, setModal2Visible] = useState(false);
   const [modal3Visible, setModal3Visible] = useState(false);
   const [modal4Visible, setModal4Visible] = useState(false);
+
+  const [modalz, setModalz] = useState(false);
+  const [modalbais, setModalbais] = useState(false);
+
+
+
 
   const data = [
     { key: '1', value: 'COMBINED MATHEMATICS' },
@@ -66,39 +72,88 @@ const App = () => {
 
   return (
     <View style={{ flex: 1, flexDirection: 'column' }}>
-      <View style={{ backgroundColor: 'red', flex: 15 }}>
+      <View style={{  flex: 3 }}></View>
+      
+      <View style={{  flex: 10 }}>
         <View style={tw`border-2 flex-1 rounded-xl m-2 bg-black`}>
-          <Text style={tw`text-white relative top-2`}>All the data</Text>
-          <Text style={tw`text-white relative top-3`}>2022(2023)</Text>
-          <Text style={tw`text-white text-2xl text-teal-300 font-black relative top-3`}>University book</Text>
+          <Text style={tw`text-white relative `}>All the data</Text>
+          <Text style={tw`text-white relative `}>2022(2023)</Text>
+          <Text style={tw`text-white text-2xl text-teal-300 font-black justify-end`}>University book</Text>
         </View>
       </View>
 
-      <View style={{ backgroundColor: 'green', flex: 24, flexDirection: 'row' }}>
-        <View style={tw`border-2 flex-1 rounded-xl m-2 `}>
-          <Text>sda</Text>
-          <Button title='Open Modal 1' onPress={() => setModal1Visible(true)} />
-        </View>
-        <View style={tw`border-2 flex-1 rounded-xl m-2 `}>
-          <Text>sda</Text>
-          <Button title='Open Modal 2' onPress={() => setModal2Visible(true)} />
-        </View>
+      <View style={{ flex: 15, flexDirection: 'row' }}>
+  <View style={tw`border-2 flex-1 rounded-xl m-2 bg-black justify-center items-center`}>
+    
+    <TouchableOpacity onPress={() => setModal1Visible(true)}>
+      
+      <Text style={tw`text-white font-bold uppercase center text-xl	`}>{selected1}</Text>
+      <Text style={tw`text-white font-medium uppercase center text-sm left-3 `}>subject 1</Text>
+      
+      </TouchableOpacity> 
+    {/* <Button title='Open Modal 1' onPress={() => setModal1Visible(true)} /> */}
+  </View>
+  <View style={tw`border-2 flex-1 rounded-xl m-2 bg-black justify-center items-center`}>
+    
+    <TouchableOpacity onPress={() => setModal2Visible(true)}>
+      
+      <Text style={tw`text-white font-bold uppercase center text-xl	`}>{selected2}</Text>
+      <Text style={tw`text-white font-medium uppercase center text-sm left-3`}>subject 2</Text>
+      
+      </TouchableOpacity> 
+    {/* <Button title='Open Modal 1' onPress={() => setModal1Visible(true)} /> */}
+  </View>
+</View>
+
+      <View style={{  flex: 15, flexDirection: 'row' }}>
+      <View style={tw`border-2 flex-1 rounded-xl m-2 bg-black justify-center items-center`}>
+    
+    <TouchableOpacity onPress={() => setModal3Visible(true)}>
+      
+      <Text style={tw`text-white font-bold uppercase center text-xl	`}>{selected3}</Text>
+      <Text style={tw`text-white font-medium uppercase center text-sm left-3`}>subject 3</Text>
+      
+      </TouchableOpacity> 
+    {/* <Button title='Open Modal 1' onPress={() => setModal1Visible(true)} /> */}
+  </View>
+  <View style={tw`border-2 flex-1 rounded-xl m-2 bg-black justify-center items-center`}>
+    
+    <TouchableOpacity onPress={() => setModal4Visible(true)}>
+      
+      <Text style={tw`text-white font-bold uppercase center text-xl	`}>{district}</Text>
+      <Text style={tw`text-white font-medium uppercase center text-sm left-3`}>distric</Text>
+      
+      </TouchableOpacity> 
+    {/* <Button title='Open Modal 1' onPress={() => setModal1Visible(true)} /> */}
+  </View>
       </View>
 
-      <View style={{ backgroundColor: 'blue', flex: 24, flexDirection: 'row' }}>
-        <View style={tw`border-2 flex-1 rounded-xl m-2 bg-black`}>
-          <Text>sda</Text>
-        </View>
-        <View style={tw`border-2 flex-1 rounded-xl m-2 `}>
-          <Text>sda</Text>
-        </View>
+      <View style={{ flex: 7,flexDirection:'row' }}>
+        <View style={tw`border-2 flex-1 rounded-xl m-2 bg-black justify-center items-center `} >
+          <TouchableOpacity onPress={() => setModal3Visible(true)}>
+      
+      <Text style={tw`text-white font-bold uppercase center text-xl	`}>{zzz}</Text>
+      <Text style={tw`text-white font-medium uppercase center text-sm `}> Z-score</Text>
+      
+      </TouchableOpacity> 
+    </View>
+    
+    
+    
+    <View style={tw`border-2 flex-1 rounded-xl m-2 bg-black justify-center items-center `} >
+          <TouchableOpacity onPress={() => setModal3Visible(true)}>
+      
+      <Text style={tw`text-white font-bold uppercase center text-xl	`}>{basi}</Text>
+      <Text style={tw`text-white font-medium uppercase center text-sm `}> bais(optional)</Text>
+      
+      </TouchableOpacity> 
+    </View>
       </View>
 
-      <View style={{ backgroundColor: 'red', flex: 12 }}>
+      <View style={{  flex: 7 }}>
         <Text>sda</Text>
       </View>
-
-      <View style={{ backgroundColor: 'green', flex: 7 }}>
+      <View style={{  flex: 7 }}>
         <Text>sda</Text>
       </View>
 
@@ -125,7 +180,7 @@ const App = () => {
       </Modal>
 
       {/* Modal 2 */}
-      <Modal visible={modal2Visible}   animationType="slide" transparent={false}  onRequestClose={() => setModal1Visible(false)}>
+      <Modal visible={modal2Visible}   animationType="slide" transparent={false}  onRequestClose={() => setModal2Visible(false)}>
        <View style={{ backgroundColor: 'black', flex:1}}> 
         <View style={tw`flex-1 justify-center items-center m-8 border-2 rounded-xl bg-white`}>
           <Text>Modal 2 Content</Text>
@@ -145,8 +200,9 @@ const App = () => {
 
         
       </Modal>
-
-      <Modal visible={modal3Visible}   animationType="slide" transparent={false}  onRequestClose={() => setModal1Visible(false)}>
+{/* Modal3  */}
+ 
+ <Modal visible={modal3Visible}   animationType="slide" transparent={false}  onRequestClose={() => setModal3Visible(false)}>
        <View style={{ backgroundColor: 'black', flex:1}}> 
         <View style={tw`flex-1 justify-center items-center m-8 border-2 rounded-xl bg-white`}>
           <Text>Modal 3 Content</Text>
@@ -166,28 +222,7 @@ const App = () => {
 
         
       </Modal>
-      
 
-      <Modal visible={modal4Visible}   animationType="slide" transparent={false}  onRequestClose={() => setModal1Visible(false)}>
-       <View style={{ backgroundColor: 'black', flex:1}}> 
-        <View style={tw`flex-1 justify-center items-center m-8 border-2 rounded-xl bg-white`}>
-          <Text>Modal 4 Content</Text>
-          <SelectList 
-        setSelected={(val) => setDistrict(val)} 
-        data={district} 
-        save="value"
-        style={{ color: 'white' }}
-        
-    />
-          <TouchableOpacity onPress={() => setModal1Visible(false)}>
-            <Text>Close Modal 4</Text>
-          </TouchableOpacity>
-        </View>
-        </View>
-
-
-        
-      </Modal>
 
 
       </View>);
