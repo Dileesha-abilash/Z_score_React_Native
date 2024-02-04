@@ -130,7 +130,7 @@ const App = () => {
 
       <View style={{ flex: 7,flexDirection:'row' }}>
         <View style={tw`border-2 flex-1 rounded-xl m-2 bg-black justify-center items-center `} >
-          <TouchableOpacity onPress={() => setModal3Visible(true)}>
+          <TouchableOpacity onPress={() => setModalz(true)}>
       
       <Text style={tw`text-white font-bold uppercase center text-xl	`}>{zzz}</Text>
       <Text style={tw`text-white font-medium uppercase center text-sm `}> Z-score</Text>
@@ -141,7 +141,7 @@ const App = () => {
     
     
     <View style={tw`border-2 flex-1 rounded-xl m-2 bg-black justify-center items-center `} >
-          <TouchableOpacity onPress={() => setModal3Visible(true)}>
+          <TouchableOpacity onPress={() => setModalbais(true)}>
       
       <Text style={tw`text-white font-bold uppercase center text-xl	`}>{basi}</Text>
       <Text style={tw`text-white font-medium uppercase center text-sm `}> bais(optional)</Text>
@@ -150,8 +150,8 @@ const App = () => {
     </View>
       </View>
 
-      <View style={{  flex: 7 }}>
-        <Text>sda</Text>
+      <View style={{  backgroundColor:'black',flex: 7 }} >
+        <Text style={tw`text-white text-2xl uppercase font-black text-center top-4 `}>submit</Text>
       </View>
       <View style={{  flex: 7 }}>
         <Text>sda</Text>
@@ -222,6 +222,79 @@ const App = () => {
 
         
       </Modal>
+{/* Modal 4 -distrct */}
+
+      
+<Modal visible={modal4Visible}   animationType="slide" transparent={false}  onRequestClose={() => setModal4Visible(false)}>
+       <View style={{ backgroundColor: 'black', flex:1}}> 
+        <View style={tw`flex-1 justify-center items-center m-8 border-2 rounded-xl bg-white`}>
+          <Text>Modal 4 Contentbabb</Text>
+          <SelectList 
+        setSelected={(val) => setDistrict(val)} 
+        data={locationsData} 
+        save="value"
+        style={{ color: 'white' }}
+        
+    />
+          <TouchableOpacity onPress={() => setModal4Visible(false)}>
+            <Text>Close Modal 4</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+
+        
+      </Modal>
+
+
+ {/* Modal 5 */}
+ <Modal visible={modalz}   animationType="slide" transparent={false}  onRequestClose={() => setModalz(false)}>
+       <View style={{ backgroundColor: 'black', flex:1}}> 
+        <View style={tw`flex-1 justify-center items-center m-8 border-2 rounded-xl bg-white`}>
+          <Text>Modal 4 Content</Text>
+          
+          <TextInput placeholder='   z-score'
+    style={{ borderWidth: 2, width: 90, color: 'white', borderColor: 'white' }}
+    value={zzz}
+    onChangeText={setZed}
+    keyboardType='phone-pad' />
+   
+          <TouchableOpacity onPress={() => setModalz(false)}>
+            <Text>Close Modal 4</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+        
+
+
+        
+      </Modal>
+{/* Modal 6 */}
+<Modal visible={modalbais}   animationType="slide" transparent={false}  onRequestClose={() => setModalbais(false)}>
+       <View style={{ backgroundColor: 'black', flex:1}}> 
+        <View style={tw`flex-1 justify-center items-center m-8 border-2 rounded-xl bg-white`}>
+          <Text>Modal 4 Contedddnt</Text>
+          
+          <TextInput placeholder='   bais'
+    style={{ borderWidth: 2, width: 90, color: 'white', borderColor: 'white' }}
+    value={basi}
+    onChangeText={setBasi}
+    keyboardType='phone-pad' />
+   
+          <TouchableOpacity onPress={() => setModalbais(false)}>
+            <Text>Close Modal 4</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+        
+
+
+        
+      </Modal>
+      
+
 
 
 
