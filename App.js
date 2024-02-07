@@ -69,7 +69,7 @@ const App = () => {
       console.log("An error occurred:", error);
     }
   }, [response, error]);
-
+  console.log(selected1,selected2,selected3,basi,district,zzz);
   return (
     <View style={{ flex: 1, flexDirection: 'column' }}>
       <View style={{  flex: 3 }}></View>
@@ -149,14 +149,14 @@ const App = () => {
       </TouchableOpacity> 
     </View>
       </View>
-
       <View style={{  backgroundColor:'black',flex: 7 }} >
+      <TouchableOpacity onPress={req}>
         <Text style={tw`text-white text-2xl uppercase font-black text-center top-4 `}>submit</Text>
+      </TouchableOpacity >
       </View>
       <View style={{  flex: 7 }}>
-        <Text>sda</Text>
+        <Text>sda{response}</Text>
       </View>
-
       {/* Modal 1 */}
       <Modal visible={modal1Visible}   animationType="slide" transparent={false}  onRequestClose={() => setModal1Visible(false)}>
        <View style={{ backgroundColor: 'black', flex:1}}> 
