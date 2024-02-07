@@ -1,10 +1,35 @@
+import 'react-native-gesture-handler';
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, Button, Modal, TouchableOpacity,TextInput } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import tw from 'twrnc';
 import { SelectList } from 'react-native-dropdown-select-list'
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+var response2 = "hacker"
+const Stack = createStackNavigator();
+function App() {
+  return (
+    <NavigationContainer>
+  <Stack.Navigator>  
+    <Stack.Screen name="Home" component={Main} />  
+    <Stack.Screen name="Pass">
+  {props => <Pass {...props} response={response} />}
+</Stack.Screen>
+    {/* <Stack.Screen name="Notifications" component={Notifications} /> */}
+  </Stack.Navigator>
+</NavigationContainer>
 
-const App = () => {
+  );
+}
+
+export default App;
+
+const Main = () => {
+  
+  const navigation = useNavigation();
   const [selected1, setSelected1] = useState("Subject 1");
   const [selected2, setSelected2] = useState("Subject 1");
   const [selected3, setSelected3] = useState("Subject 1");
@@ -39,15 +64,20 @@ const App = () => {
     { key: '3', value: 'KALUTARA' },
   ];
 
-  const req = () => {
+  const req = (navigation) => {
     setlsLoading(true);
-
     fetch(`https://z-score-api-1.onrender.com/?s1=${selected1}&s2=${selected2}&s3=${selected3}&distric=${district}&z=${zzz}&bais=${basi}`)
       .then(res => res.json())
       .then(
         (result) => {
           setlsLoading(false);
           setResponse(result);
+          console.log(response2)
+          response2 = result
+          console.log(response2)
+
+          navigation.navigate('Pass');
+
           console.log(result);
         },
         (error) => {
@@ -60,6 +90,7 @@ const App = () => {
 
   useEffect(() => {
     console.log("Component has rendered or dependencies have changed.");
+    // console.log(navigation)
 
     if (response) {
       console.log("Response has changed:", response);
@@ -150,12 +181,12 @@ const App = () => {
     </View>
       </View>
       <View style={{  backgroundColor:'black',flex: 7 }} >
-      <TouchableOpacity onPress={req}>
+      <TouchableOpacity onPress={() => req(navigation)}>
         <Text style={tw`text-white text-2xl uppercase font-black text-center top-4 `}>submit</Text>
       </TouchableOpacity >
       </View>
       <View style={{  flex: 7 }}>
-        <Text>sda{response}</Text>
+        <Text>sda</Text>
       </View>
       {/* Modal 1 */}
       <Modal visible={modal1Visible}   animationType="slide" transparent={false}  onRequestClose={() => setModal1Visible(false)}>
@@ -301,4 +332,13 @@ const App = () => {
       </View>);
 };
 
-export default App;
+const Pass = () => {
+ 
+  return (
+    <View>
+      <Text style={{ fontSize: 50 }}>hi {response2}</Text>
+    </View>
+  );
+};
+
+// export default App;
