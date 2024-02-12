@@ -12,6 +12,9 @@ var response2 = "hacker"
 const Stack = createStackNavigator();
 
 const Done = ()=>{
+
+
+  
 return(
 
 <View >
