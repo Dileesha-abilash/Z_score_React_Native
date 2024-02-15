@@ -13,9 +13,7 @@ import {
 import {SelectList} from 'react-native-dropdown-select-list';
 import {Isao, Kaede, Akira} from 'react-native-textinput-effects';
 import {useNavigation} from '@react-navigation/native';
-import tw from 'twrnc';
-
-const Subject_screen = ({navigation}) => {
+const Subject_screen = () => {
 
     const [selected1,
         setSelected1] = useState("Subject 1");
@@ -23,10 +21,12 @@ const Subject_screen = ({navigation}) => {
         setSelected2] = useState("Subject 1");
     const [selected3,
         setSelected3] = useState("Subject 1");
-    // const [zzz,
-    //     setZed] = useState("enter ");
-    // const [basi,
-    //     setBasi] = useState(0.2);
+    const [district,
+        setDistrict] = useState("district");
+    const [zzz,
+        setZed] = useState("enter ");
+    const [basi,
+        setBasi] = useState(0.2);
 
     const [isLoading,
         setlsLoading] = useState(false);
@@ -239,7 +239,84 @@ const Subject_screen = ({navigation}) => {
         }
     ];
 
-    
+    const locationsData = [
+        {
+            key: '1',
+            value: 'COLOMBO'
+        }, {
+            key: '2',
+            value: 'GAMPAHA'
+        }, {
+            key: '3',
+            value: 'KALUTARA'
+        }, {
+            key: '4',
+            value: 'MATALE'
+        }, {
+            key: '5',
+            value: 'KANDY'
+        }, {
+            key: '6',
+            value: 'NUWARA ELIYA'
+        }, {
+            key: '7',
+            value: 'GALLE'
+        }, {
+            key: '8',
+            value: 'MATARA'
+        }, {
+            key: '9',
+            value: 'HAMBANTOTA'
+        }, {
+            key: '10',
+            value: 'JAFFNA'
+        }, {
+            key: '11',
+            value: 'KILINOCHCHI'
+        }, {
+            key: '12',
+            value: 'MANNAR'
+        }, {
+            key: '13',
+            value: 'MULLAITIVU'
+        }, {
+            key: '14',
+            value: 'VAVUNIYA'
+        }, {
+            key: '15',
+            value: 'TRINCOMALEE'
+        }, {
+            key: '16',
+            value: 'BATTICALOA'
+        }, {
+            key: '17',
+            value: 'AMPARA'
+        }, {
+            key: '18',
+            value: 'PUTTALAM'
+        }, {
+            key: '19',
+            value: 'KURUNEGALA'
+        }, {
+            key: '20',
+            value: 'ANURADHAPURA'
+        }, {
+            key: '21',
+            value: 'POLONNARUWA'
+        }, {
+            key: '22',
+            value: 'BADULLA'
+        }, {
+            key: '23',
+            value: 'MONARAGALA'
+        }, {
+            key: '24',
+            value: 'KEGALLE'
+        }, {
+            key: '25',
+            value: 'RATNAPURA'
+        }
+    ];
 
     // const kaedeInput = (   <Kaede     label={'Website'}     inputPadding={16} />
     // );
@@ -250,15 +327,17 @@ const Subject_screen = ({navigation}) => {
     };
 
     return (
-        <SafeAreaView style={{
-            flex: 1
-        }}>
+        <SafeAreaView style={{ flex: 1 }}>
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
+                <View style={styles.container3}>
+                    <Text style="">hi</Text>
+
+                </View>
                 <View style={styles.container}>
 
                     <SelectList
                         dropdownItemStyles={{
-                        maxWidth: 250,
+                        maxWidth: 200,
                         alignContent: 'center'
                     }}
                         placeholder="Subject 1"
@@ -266,29 +345,64 @@ const Subject_screen = ({navigation}) => {
                         setSelected={(val) => setSelected1(val)}
                         data={data}
                         save="value"/>
-
                     <SelectList
-                        dropdownItemStyles={{
-                        maxWidth: 250,
-                        alignContent: 'center'
-                    }}
                         placeholder="Subject 2"
                         boxStyles={styles.boxStyles1}
-                        setSelected={(val) => setSelected2(val)}
+                        setSelected={(val) => setSelected1(val)}
                         data={data}
                         save="value"/>
-
                     <SelectList
-                        dropdownItemStyles={{
-                        maxWidth: 250,
-                        alignContent: 'center'
-                    }}
                         placeholder="Subject 3"
                         boxStyles={styles.boxStyles1}
-                        setSelected={(val) => setSelected3(val)}
+                        setSelected={(val) => setSelected1(val)}
                         data={data}
                         save="value"/>
-                  <Button title='next' onPress={() => navigation.navigate("z_dis", { selected1: selected1, selected2: selected2, selected3: selected3 })}/>
+                    <SelectList
+                        placeholder="District"
+                        boxStyles={styles.boxStyles1}
+                        setSelected={(val) => setSelected1(val)}
+                        data={data}
+                        save="value"/>
+                    <Text>Some additional text</Text>
+                    {/* Placing Text component within the View */}
+                </View>
+                <View style={styles.rest}>
+                    <View style={styles.container}>
+                        <Akira
+                            label={'Z score'}
+                            borderColor={'orange'}
+                            inputPadding={16}
+                            labelHeight={24}
+                            labelWidth={50}
+                            labelStyle={{
+                            color: 'black'
+                        }}
+                            style={{
+                            width: 170
+                        }}
+                            passiveIconColor={'blue'}
+                            keyboardType={'phone-pad'}/>
+                    </View>
+                    <View style={styles.container3}>
+                        <Akira
+                            label={'Z score'}
+                            borderColor={'orange'}
+                            inputPadding={16}
+                            labelHeight={24}
+                            labelWidth={50}
+                            labelStyle={{
+                            color: 'black'
+                        }}
+                            style={{
+                            width: 170
+                        }}
+                            passiveIconColor={'blue'}
+                            keyboardType={'phone-pad'}/>
+                    </View>
+
+                </View>
+                <View style={styles.rest}>
+                    <Text>hi</Text>
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -322,7 +436,7 @@ const styles = StyleSheet.create({
         // justifyContent: 'center', alignItems: 'center',
         margin: 15,
         // maxWidth:150,
-        width: 250
+        width: 170
     },
     rest: {
         flex: 50
