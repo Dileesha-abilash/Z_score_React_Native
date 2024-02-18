@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Button, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
+import LottieView from 'lottie-react-native';
 
 const renderItem = ({ item }) => (
   <View style={{ padding: 10, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
@@ -11,12 +12,11 @@ const renderItem = ({ item }) => (
 
 const Result = ({ navigation, route }) => {
   const { selected1, selected2, selected3, zzz, basi, district } = route.params;
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [response, setResponse] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
     fetch(`https://z-score-api-1.onrender.com/?s1=${selected1}&s2=${selected2}&s3=${selected3}&distric=${district}&z=${zzz}&bais=${basi}`)
       .then(res => res.json())
       .then(
@@ -26,10 +26,7 @@ const Result = ({ navigation, route }) => {
         },
         (error) => {
           setIsLoading(false);
-          console.log(error)
           setError(error);
-          setResponse(error);
-
         }
       );
   }, []); // Empty dependency array means this effect will run only once, similar to componentDidMount
@@ -37,7 +34,12 @@ const Result = ({ navigation, route }) => {
   if (isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" />
+        <LottieView
+source={require('../assets/laod.json')}
+          autoPlay
+          loop
+          style={{ width: 200, height: 200 }}
+        />
       </View>
     );
   }
