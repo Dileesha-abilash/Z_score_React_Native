@@ -14,6 +14,7 @@ import {SelectList} from 'react-native-dropdown-select-list';
 import {Isao, Kaede, Akira} from 'react-native-textinput-effects';
 import {useNavigation} from '@react-navigation/native';
 import tw from 'twrnc';
+import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
 
 const Subject_screen = ({navigation}) => {
 
@@ -254,14 +255,22 @@ const Subject_screen = ({navigation}) => {
             flex: 1
         }}>
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
-                <View style={styles.container}>
+              <LinearGradient // Add LinearGradient here
+                colors={['#171717', '#171717']}
+                style={styles.gradient}>
 
+
+            <View style={[styles.container, tw`shadow-lg shadow-white-500/80`]}>
+            <View  >
                     <SelectList
                         dropdownItemStyles={{
                         maxWidth: 250,
                         alignContent: 'center'
                     }}
+
+                    dropdownTextStyles={styles.dropDownFont}
                         placeholder="Subject 1"
+                        
                         boxStyles={styles.boxStyles1}
                         setSelected={(val) => setSelected1(val)}
                         data={data}
@@ -272,6 +281,8 @@ const Subject_screen = ({navigation}) => {
                         maxWidth: 250,
                         alignContent: 'center'
                     }}
+                    dropdownTextStyles={styles.dropDownFont}
+
                         placeholder="Subject 2"
                         boxStyles={styles.boxStyles1}
                         setSelected={(val) => setSelected2(val)}
@@ -283,13 +294,19 @@ const Subject_screen = ({navigation}) => {
                         maxWidth: 250,
                         alignContent: 'center'
                     }}
+                    dropdownTextStyles={styles.dropDownFont}
+
                         placeholder="Subject 3"
                         boxStyles={styles.boxStyles1}
                         setSelected={(val) => setSelected3(val)}
                         data={data}
                         save="value"/>
-                  <Button title='next' onPress={() => navigation.navigate("z_dis", { selected1: selected1, selected2: selected2, selected3: selected3 })}/>
-                </View>
+
+                        </View><View >
+                  <Button title='next'  style={tw`bg-cyan-500 shadow-lg shadow-cyan-500/50`} onPress={() => navigation.navigate("z_dis", { selected1: selected1, selected2: selected2, selected3: selected3 })}/>
+                </View></View>
+                
+            </LinearGradient>
             </ScrollView>
         </SafeAreaView>
     );
@@ -302,10 +319,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    dropDownFont: {
+        color:'white',fontWeight:'600',
+        borderColor:'black'
+    },
     container: {
         flex: 60,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor:'black',
+        marginTop:80,
+        // marginLeft:1,
+        borderRadius:50,
+        padding:20
     },
     container2: {
         flex: 20,
@@ -318,15 +344,21 @@ const styles = StyleSheet.create({
     },
     boxStyles1: {
         // flex: 1,
-        backgroundColor: 'orange',
+        backgroundColor: '#171717',
         // justifyContent: 'center', alignItems: 'center',
         margin: 15,
         // maxWidth:150,
-        width: 250
+        width: 250,
+        borderColor:'#171717',shadowColor:"blue"
+        
     },
     rest: {
         flex: 50
-    }
+    },
+    gradient: {
+        flex: 1,
+        padding:100
+    },
 });
 
 export default Subject_screen;

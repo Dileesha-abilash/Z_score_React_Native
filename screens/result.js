@@ -17,6 +17,7 @@ const Result = ({ navigation, route }) => {
   const [response, setResponse] = useState([]);
 
   useEffect(() => {
+    console.log(`https://z-score-api-1.onrender.com/?s1=${selected1}&s2=${selected2}&s3=${selected3}&distric=${district}&z=${zzz}&bais=${basi}`)
     fetch(`https://z-score-api-1.onrender.com/?s1=${selected1}&s2=${selected2}&s3=${selected3}&distric=${district}&z=${zzz}&bais=${basi}`)
       .then(res => res.json())
       .then(

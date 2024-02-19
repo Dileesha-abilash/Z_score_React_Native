@@ -122,6 +122,8 @@ const Zscore = ({navigation,route}) => {
                         maxWidth: 250,
                         alignContent: 'center'
                     }}
+                    dropdownTextStyles={styles.dropDownFont}
+                        inputStyles={{textDecorationColor:'orange'}}
                         placeholder="Subject 2"
                         boxStyles={styles.boxStyles1}
                         setSelected={(val) => setDistrict(val)}
@@ -132,6 +134,8 @@ const Zscore = ({navigation,route}) => {
           value={zzz} // Use the value from the state
           borderColor={'orange'}
           inputPadding={16}
+          placeholderTextColor={'grey'}
+          placeholder='z-score'
           labelHeight={24}
           labelWidth={50}
           labelStyle={{ color: 'black' }}
@@ -144,6 +148,8 @@ const Zscore = ({navigation,route}) => {
           label={'Bias'}
           value={basi} // Use the value from the state
           borderColor={'orange'}
+          placeholderTextColor={'grey'}
+          placeholder='Bais (optional)'
           inputPadding={16}
           labelHeight={24}
           labelWidth={50}
@@ -170,10 +176,19 @@ const styles = StyleSheet.create({
       alignItems: 'center'
   },
   container: {
-      flex: 60,
-      justifyContent: 'center',
-      alignItems: 'center'
-  },
+    flex: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor:'black',
+        marginTop:80,
+        margin:50,
+        borderRadius:40,
+        padding:10,
+        
+  }, dropDownFont: {
+    color:'white',fontWeight:'600',
+    borderColor:'black'
+},
   container2: {
       flex: 20,
       justifyContent: 'center',
@@ -184,16 +199,17 @@ const styles = StyleSheet.create({
       margin: 10
   },
   boxStyles1: {
-      // flex: 1,
-      backgroundColor: 'orange',
-      // justifyContent: 'center', alignItems: 'center',
-      margin: 15,
-      // maxWidth:150,
-      width: 250
+       // flex: 1,
+       backgroundColor: '#171717',
+       // justifyContent: 'center', alignItems: 'center',
+       margin: 15,
+       // maxWidth:150,
+       width: 250,
+       borderColor:'#171717',shadowColor:"orange"
   },
   rest: {
       flex: 50,
-      // backgroundColor:'black'
+      backgroundColor:'#171717'
   }
 });
 
