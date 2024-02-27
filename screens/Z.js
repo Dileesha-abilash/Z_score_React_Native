@@ -35,7 +35,7 @@ const Zscore = ({navigation,route}) => {
   // useEffect(() => {
   //  setBasi(0.2)
   // }, []);
-  console.log(selected1,selected2)
+  console.log(selected1,selected2,selected3)
   const locationsData = [
     {
         key: '1',

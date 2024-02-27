@@ -20,9 +20,11 @@ const SndevBio = 15.26
 
 if (checks == true){
   zed = ((phy - phyMean) /SndevPhy) + ((math - mathMean) /SndevMath) +((chem - chemMean) /SndevChem)
+  zed= zed/3
 }
 else{
   zed = ((phy - phyMean) /SndevPhy) + ((bio - bioMean) /SndevBio) + ((chem - chemMean) /SndevChem)
+  zed= zed/3
 
 }
 return(zed)

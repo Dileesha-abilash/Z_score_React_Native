@@ -10,7 +10,7 @@ import {
     ScrollView,
     SafeAreaView
 } from 'react-native';
-import {SelectList,MultipleSelectList } from 'react-native-dropdown-select-list';
+import {SelectList} from 'react-native-dropdown-select-list';
 import {Isao, Kaede, Akira} from 'react-native-textinput-effects';
 import {useNavigation} from '@react-navigation/native';
 import tw from 'twrnc';
@@ -18,16 +18,12 @@ import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
 
 const Subject_screen = ({navigation}) => {
 
-    // const [selected1,
-    //     setSelected1] = useState("Subject 1");
-    // const [selected2,
-    //     setSelected2] = useState("Subject 1");
-    // const [selected3,
-    //     setSelected3] = useState("Subject 1");
-
-    let selected1
-    let selected2
-    let selected3
+    const [selected1,
+        setSelected1] = useState("Subject 1");
+    const [selected2,
+        setSelected2] = useState("Subject 1");
+    const [selected3,
+        setSelected3] = useState("Subject 1");
     // const [zzz,
     //     setZed] = useState("enter ");
     // const [basi,
@@ -243,15 +239,8 @@ const Subject_screen = ({navigation}) => {
             value: 'COMMUNICATION & MEDIA STUDIES'
         }
     ];
-    const [selected, setSelected] = React.useState([]);
-  
-  console.log(selected.length)
-  console.log(selected)
 
-  if (selected.length>=4){
-    alert("select 3 subjects")
-    setSelected(selected.slice(0, 3));
-  }
+    
 
     // const kaedeInput = (   <Kaede     label={'Website'}     inputPadding={16} />
     // );
@@ -259,42 +248,66 @@ const Subject_screen = ({navigation}) => {
     const handleButtonPress = () => {
         // Handle button press action
         console.log('Button pressed!');
-        if (selected.length == 3) {
-            selected1 = selected[0]
-            selected2 = selected[1]
-            selected3 = selected[2]
-        navigation.navigate("z_dis", { selected1: selected1, selected2: selected2, selected3: selected3 })
-        }
     };
 
     return (
         <SafeAreaView style={{
             flex: 1
         }}>
-            
-            <View>
-           
-            <MultipleSelectList 
-        setSelected={(val) => setSelected(val)} 
-        data={data} 
-        save="value"
-    
-        label="Categories"
-    />
-           
-            <View >
+            <ScrollView contentContainerStyle={styles.scrollViewContent}>
+              <LinearGradient // Add LinearGradient here
+                colors={['#171717', '#171717']}
+                style={styles.gradient}>
 
+
+            <View style={[styles.container, tw`shadow-lg shadow-white-500/80`]}>
+            <View  >
+                    <SelectList
+                        dropdownItemStyles={{
+                        maxWidth: 250,
+                        alignContent: 'center'
+                    }}
+
+                    dropdownTextStyles={styles.dropDownFont}
+                        placeholder="Subject 1"
+                        
+                        boxStyles={styles.boxStyles1}
+                        setSelected={(val) => setSelected1(val)}
+                        data={data}
+                        save="value"/>
+
+                    <SelectList
+                        dropdownItemStyles={{
+                        maxWidth: 250,
+                        alignContent: 'center'
+                    }}
+                    dropdownTextStyles={styles.dropDownFont}
+
+                        placeholder="Subject 2"
+                        boxStyles={styles.boxStyles1}
+                        setSelected={(val) => setSelected2(val)}
+                        data={data}
+                        save="value"/>
+
+                    <SelectList
+                        dropdownItemStyles={{
+                        maxWidth: 250,
+                        alignContent: 'center'
+                    }}
+                    dropdownTextStyles={styles.dropDownFont}
+
+                        placeholder="Subject 3"
+                        boxStyles={styles.boxStyles1}
+                        setSelected={(val) => setSelected3(val)}
+                        data={data}
+                        save="value"/>
+
+                        </View><View >
+                  <Button title='next'  style={tw`bg-cyan-500 shadow-lg shadow-cyan-500/50`} onPress={() => navigation.navigate("z_dis", { selected1: selected1, selected2: selected2, selected3: selected3 })}/>
+                </View></View>
                 
-            <Button 
-    title='next'  
-    onPress={handleButtonPress} 
-    style={tw`bg-cyan-500 shadow-lg shadow-cyan-500/50`} 
-/>
-
-
-                </View>
-                </View>
-
+            </LinearGradient>
+            </ScrollView>
         </SafeAreaView>
     );
 
