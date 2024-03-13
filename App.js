@@ -28,7 +28,7 @@ const MainScreen = () => {
         <Tab.Navigator screenOptions={{
             headerShown: false // This will hide all headers in the stack
         }}>
-            <Tab.Screen name="Stack" component={My_Stack} />
+            <Tab.Screen name="Stack" component={My_Stack} title="course"/>
             <Tab.Screen name="Tab2" component={Tab2} />
             <Tab.Screen name="Tab3" component={Tab3} />
             <Tab.Screen name="Tab4" component={Tab4} />
