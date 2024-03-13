@@ -1,7 +1,20 @@
-import React, { useState ,useEffect} from 'react';
-import { View, Text, StyleSheet,Button,FlatList,ActivityIndicator } from 'react-native';
-import { Akira } from 'react-native-textinput-effects';
-import {SelectList} from 'react-native-dropdown-select-list';
+import React, { useState } from 'react';
+import { TextStyle, TouchableOpacity } from 'react-native';
+
+import {
+    View,
+    Text,
+    StyleSheet,
+    TextInput,
+    Button,
+    ScrollView,
+    SafeAreaView
+} from 'react-native';
+import { SelectList, MultipleSelectList } from 'react-native-dropdown-select-list';
+import { Isao, Kaede, Akira } from 'react-native-textinput-effects';
+import { useNavigation } from '@react-navigation/native';
+import tw from 'twrnc';
+import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
 // const req = (navigation) => {
 //     setlsLoading(true);
 //     fetch(`https://z-score-api-1.onrender.com/?s1=${selected1}&s2=${selected2}&s3=${selected3}&distric=${district}&z=${zzz}&bais=${basi}`)
@@ -30,11 +43,17 @@ const Zscore = ({navigation,route}) => {
   const { selected1, selected2, selected3 } = route.params;
   // State initialization outside the useEffect
   const [district, setDistrict] = useState("district");
-  const [zzz, setZed] = useState(""); // Initial value is an empty string
-  const [basi, setBasi] = useState("");
   // useEffect(() => {
   //  setBasi(0.2)
   // }, []);
+  const handleButtonPress = () => {
+    if (district !='district')
+    navigation.navigate("loading", { selected1: selected1, selected2: selected2, selected3: selected3 ,district:district})
+else{
+    alert('Select the Distric')
+}
+}
+
   console.log(selected1,selected2,selected3)
   const locationsData = [
     {
@@ -114,103 +133,74 @@ const Zscore = ({navigation,route}) => {
         value: 'RATNAPURA'
     }
 ];
-  return (
-    <View style={styles.rest}>
-      <View style={styles.container}>
-      <SelectList
-                        dropdownItemStyles={{
-                        maxWidth: 250,
-                        alignContent: 'center'
-                    }}
+return (
+    <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView contentContainerStyle={styles.scrollViewContent}>
+            <View style={styles.container}>
+                <Text style={{ color: '#FFFFFF' }}>Select the </Text>
+                <Text style={styles.subjectText}>
+                District
+                </Text>
+                <SelectList
+                    setSelected={(val) => setDistrict(val)}
+                    data={locationsData}
+                    save="value"
+                    // label="Categories"
+                    maxHeight='150'
+                    boxStyles={styles.boxStyles}
+                    color='blue'
+                    // inputStyles={styles.boxStyles}
                     dropdownTextStyles={styles.dropDownFont}
-                        inputStyles={{textDecorationColor:'orange'}}
-                        placeholder="Subject 2"
-                        boxStyles={styles.boxStyles1}
-                        setSelected={(val) => setDistrict(val)}
-                        data={locationsData}
-                        save="value"/>
-        <Akira
-          label={'Z score'}
-          value={zzz} // Use the value from the state
-          borderColor={'orange'}
-          inputPadding={16}
-          placeholderTextColor={'grey'}
-          placeholder='z-score'
-          labelHeight={24}
-          labelWidth={50}
-          labelStyle={{ color: 'black' }}
-          style={{ width: 170 }}
-          passiveIconColor={'blue'}
-          keyboardType={'phone-pad'}
-          onChangeText={(text) => setZed(text)} // Update the state when the text changes
-        />
-       < Akira
-          label={'Bias'}
-          value={basi} // Use the value from the state
-          borderColor={'orange'}
-          placeholderTextColor={'grey'}
-          placeholder='Bais (optional)'
-          inputPadding={16}
-          labelHeight={24}
-          labelWidth={50}
-          labelStyle={{ color: 'black' }}
-          style={{ width: 170 }}
-          passiveIconColor={'blue'}
-          keyboardType={'phone-pad'}
-          onChangeText={(text) => setBasi(text)} // Update the state when the text changes
-        />
-        <Text style={{margin:20}}>
-          {/* Searching mark is calculated using Zscore + bias */}
-          Searching mark =  Zscore + bias
-        </Text>
-        <Button title='Search' onPress={() => navigation.navigate("result", { selected1: selected1, selected2: selected2, selected3: selected3,zzz:zzz,basi:basi,district:district })}/>
-      </View>
-    </View>
-  );
+                    // checkBoxStyles={{ backgroundColor: 'white' }}
+                    // labelStyles={{ color: 'white' }}
+                    inputStyles={{ color: 'white' }}
+                />
+            </View>
+            <View style={{ flex: 0.4, flexDirection: 'row' }}>
+            <View style={{ flex: 0.4 }}>
+<TouchableOpacity style={[styles.button2, { width: '100%',height:"30%",margin:10 }]} onPress={handleButtonPress}>
+    <Text style={{ color: '#FFFFFF', fontSize: 18 }}>Pre</Text>
+</TouchableOpacity>
+</View>
+<View style={{ flex: 0.4 }}>
+<TouchableOpacity style={[styles.button2, { width: '100%',height:"30%",margin:10 }]} onPress={handleButtonPress}>
+    <Text style={{ color: '#FFFFFF', fontSize: 18 }}>Next</Text>
+</TouchableOpacity>
+</View>
+            </View>
+        </ScrollView>
+    </SafeAreaView>
+);
 };
 
 const styles = StyleSheet.create({
-  scrollViewContent: {
-      flexGrow: 1,
-      justifyContent: 'center',
-      alignItems: 'center'
-  },
-  container: {
-    flex: 60,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor:'black',
-        marginTop:80,
-        margin:50,
-        borderRadius:40,
-        padding:10,
-        
-  }, dropDownFont: {
-    color:'white',fontWeight:'600',
-    borderColor:'black'
+scrollViewContent: {
+    flexGrow: 1,
+    justifyContent: 'center', backgroundColor: '#18181B'
+}, button2: {
+    backgroundColor: '#26272B',
+alignItems: 'center',
+justifyContent: 'center',
+borderRadius: 2,
 },
-  container2: {
-      flex: 20,
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexDirection: 'row'
-  },
-  container3: {
-      margin: 10
-  },
-  boxStyles1: {
-       // flex: 1,
-       backgroundColor: '#171717',
-       // justifyContent: 'center', alignItems: 'center',
-       margin: 15,
-       // maxWidth:150,
-       width: 250,
-       borderColor:'#171717',shadowColor:"orange"
-  },
-  rest: {
-      flex: 50,
-      backgroundColor:'#171717'
-  }
+container: {
+    flex: 1,
+    justifyContent: 'center',
+    // alignItems: 'center',
+    margin: 10
+}, boxStyles: {
+    backgroundColor: '#26272B', borderColor: '#26272B', width: '90%', color: 'white'
+},
+subjectText: {
+    fontSize: 40,
+    marginBottom: 10, color: '#FFFFFF', fontWeight: '700'
+}, dropDownFont: {
+    color: 'white', fontWeight: '600',
+    // borderColor:'black'
+},
 });
+
+
+
 
 export default Zscore;

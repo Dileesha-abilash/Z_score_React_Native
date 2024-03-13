@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {TextStyle} from 'react-native';
+import React, { useState } from 'react';
+import { TextStyle, TouchableOpacity } from 'react-native';
 
 import {
     View,
@@ -10,25 +10,24 @@ import {
     ScrollView,
     SafeAreaView
 } from 'react-native';
-import {SelectList,MultipleSelectList } from 'react-native-dropdown-select-list';
-import {Isao, Kaede, Akira} from 'react-native-textinput-effects';
-import {useNavigation} from '@react-navigation/native';
+import { SelectList, MultipleSelectList } from 'react-native-dropdown-select-list';
+import { Isao, Kaede, Akira } from 'react-native-textinput-effects';
+import { useNavigation } from '@react-navigation/native';
 import tw from 'twrnc';
 import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
 
-const Subject_screen = ({navigation}) => {
-
+const Subject_screen = ({ navigation }) => {
+        let selected1
+        let selected2
+        let selected3
+    const [selected, setSelected] = React.useState([]);
     // const [selected1,
     //     setSelected1] = useState("Subject 1");
     // const [selected2,
     //     setSelected2] = useState("Subject 1");
     // const [selected3,
     //     setSelected3] = useState("Subject 1");
-
-    let selected1
-    let selected2
-    let selected3
-    // const [zzz,
+    // // const [zzz,
     //     setZed] = useState("enter ");
     // const [basi,
     //     setBasi] = useState(0.2);
@@ -243,108 +242,89 @@ const Subject_screen = ({navigation}) => {
             value: 'COMMUNICATION & MEDIA STUDIES'
         }
     ];
-    const [selected, setSelected] = React.useState([]);
-  
-  console.log(selected.length)
-  console.log(selected)
 
-  if (selected.length>=4){
-    alert("select 3 subjects")
-    setSelected(selected.slice(0, 3));
-  }
+
 
     // const kaedeInput = (   <Kaede     label={'Website'}     inputPadding={16} />
     // );
 
     const handleButtonPress = () => {
-        // Handle button press action
-        console.log('Button pressed!');
-        if (selected.length == 3) {
-            selected1 = selected[0]
-            selected2 = selected[1]
-            selected3 = selected[2]
-        navigation.navigate("z_dis", { selected1: selected1, selected2: selected2, selected3: selected3 })
-        }
-    };
+                // Handle button press action
+                console.log('Button pressed!');
+                if (selected.length == 3) {
+                    selected1 = selected[0]
+                    selected2 = selected[1]
+                    selected3 = selected[2]
+                navigation.navigate("z_dis", { selected1: selected1, selected2: selected2, selected3: selected3 })
+                }else{
+                    alert('You need to select 3 Subjects')
+                }
+            };
 
     return (
-        <SafeAreaView style={{
-            flex: 1
-        }}>
-            
-            <View>
-           
-            <MultipleSelectList 
-        setSelected={(val) => setSelected(val)} 
-        data={data} 
-        save="value"
-    
-        label="Categories"
-    />
-           
-            <View >
-
-                
-            <Button 
-    title='next'  
-    onPress={handleButtonPress} 
-    style={tw`bg-cyan-500 shadow-lg shadow-cyan-500/50`} 
-/>
-
-
+        <SafeAreaView style={{ flex: 1 }}>
+            <ScrollView contentContainerStyle={styles.scrollViewContent}>
+                <View style={styles.container}>
+                    <Text style={{ color: '#FFFFFF' }}>Select the </Text>
+                    <Text style={styles.subjectText}>
+                        Subjects
+                    </Text>
+                    <MultipleSelectList
+                        setSelected={(val) => setSelected(val)}
+                        data={data}
+                        save="value"
+                        label="Categories"
+                        maxHeight='150'
+                        boxStyles={styles.boxStyles}
+                        color='blue'
+                        // inputStyles={styles.boxStyles}
+                        dropdownTextStyles={styles.dropDownFont}
+                        checkBoxStyles={{ backgroundColor: 'white' }}
+                        labelStyles={{ color: 'white' }}
+                        inputStyles={{ color: 'white' }}
+                    />
                 </View>
+                <View style={{ flex: 0.4, flexDirection: 'row' }}>
+                <View style={{ flex: 0.4 }}>
+    <TouchableOpacity style={[styles.button2, { width: '100%',height:"30%",margin:10 }]} onPress={handleButtonPress}>
+        <Text style={{ color: '#FFFFFF', fontSize: 18 }}>Pre</Text>
+    </TouchableOpacity>
+</View>
+<View style={{ flex: 0.4 }}>
+    <TouchableOpacity style={[styles.button2, { width: '100%',height:"30%",margin:10 }]} onPress={handleButtonPress}>
+        <Text style={{ color: '#FFFFFF', fontSize: 18 }}>Next</Text>
+    </TouchableOpacity>
+</View>
                 </View>
-
+            </ScrollView>
         </SafeAreaView>
     );
-
 };
 
 const styles = StyleSheet.create({
     scrollViewContent: {
         flexGrow: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    dropDownFont: {
-        color:'white',fontWeight:'600',
-        borderColor:'black'
+        justifyContent: 'center', backgroundColor: '#18181B'
+    }, button2: {
+        backgroundColor: '#26272B',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 2,
     },
     container: {
-        flex: 60,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor:'orange',
-        marginTop:80,
-        // marginLeft:1,
-        borderRadius:50,
-        padding:20
-    },
-    container2: {
-        flex: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row'
-    },
-    container3: {
-        margin: 10
-    },
-    boxStyles1: {
-        // flex: 1,
-        backgroundColor: '#171717',
-        // justifyContent: 'center', alignItems: 'center',
-        margin: 15,
-        // maxWidth:150,
-        width: 250,
-        borderColor:'#171717',shadowColor:"blue"
-        
-    },
-    rest: {
-        flex: 50
-    },
-    gradient: {
         flex: 1,
-        padding:100
+        justifyContent: 'center',
+        // alignItems: 'center',
+        margin: 10
+    }, boxStyles: {
+        backgroundColor: '#26272B', borderColor: '#26272B', width: '90%', color: 'white'
+    },
+    subjectText: {
+        fontSize: 40,
+        marginBottom: 10, color: '#FFFFFF', fontWeight: '700'
+    }, dropDownFont: {
+        color: 'white', fontWeight: '600',
+        // borderColor:'black'
     },
 });
 
