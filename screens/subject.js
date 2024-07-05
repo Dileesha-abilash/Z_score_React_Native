@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextStyle, TouchableOpacity } from 'react-native';
+import { TextStyle, TouchableOpacity, StatusBar } from 'react-native';
 
 import {
     View,
@@ -17,41 +17,13 @@ import tw from 'twrnc';
 import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
 
 const Subject_screen = ({ navigation }) => {
-        let selected1
-        let selected2
-        let selected3
-    const [selected, setSelected] = React.useState([]);
-    // const [selected1,
-    //     setSelected1] = useState("Subject 1");
-    // const [selected2,
-    //     setSelected2] = useState("Subject 1");
-    // const [selected3,
-    //     setSelected3] = useState("Subject 1");
-    // // const [zzz,
-    //     setZed] = useState("enter ");
-    // const [basi,
-    //     setBasi] = useState(0.2);
+    let selected1
+    let selected2
+    let selected3
+    const [selected, setSelected] =useState([]);
 
-    const [isLoading,
-        setlsLoading] = useState(false);
-    const [error,
-        setError] = useState();
-    const [response,
-        setResponse] = useState();
 
-    const [modal1Visible,
-        setModal1Visible] = useState(false);
-    const [modal2Visible,
-        setModal2Visible] = useState(false);
-    const [modal3Visible,
-        setModal3Visible] = useState(false);
-    const [modal4Visible,
-        setModal4Visible] = useState(false);
 
-    const [modalz,
-        setModalz] = useState(false);
-    const [modalbais,
-        setModalbais] = useState(false);
 
     const data = [
         {
@@ -245,24 +217,28 @@ const Subject_screen = ({ navigation }) => {
 
 
 
-    // const kaedeInput = (   <Kaede     label={'Website'}     inputPadding={16} />
-    // );
-
-    const handleButtonPress = () => {
-                // Handle button press action
-                console.log('Button pressed!');
-                if (selected.length == 3) {
-                    selected1 = selected[0]
-                    selected2 = selected[1]
-                    selected3 = selected[2]
-                navigation.navigate("z_dis", { selected1: selected1, selected2: selected2, selected3: selected3 })
-                }else{
-                    alert('You need to select 3 Subjects')
-                }
-            };
+  
+const back = () => {
+    navigation.goBack(); // This function will navigate back to the previous screen
+  };
+  
+  // Put the comment inside curly braces
+  const handleButtonPress = () => {
+    // Handle button press action
+    console.log('Button pressed!');
+    if (selected.length == 3) {
+      selected1 = selected[0];
+      selected2 = selected[1];
+      selected3 = selected[2];
+      navigation.navigate("z_dis", { selected1: selected1, selected2: selected2, selected3: selected3 });
+    } else {
+      alert('You need to select 3 Subjects');
+    }
+  };
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
+            <StatusBar backgroundColor="#2D2D2D" />
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
                 <View style={styles.container}>
                     <Text style={{ color: '#FFFFFF' }}>Select the </Text>
@@ -277,7 +253,7 @@ const Subject_screen = ({ navigation }) => {
                         maxHeight='150'
                         boxStyles={styles.boxStyles}
                         color='blue'
-                        // inputStyles={styles.boxStyles}
+                        
                         dropdownTextStyles={styles.dropDownFont}
                         checkBoxStyles={{ backgroundColor: 'white' }}
                         labelStyles={{ color: 'white' }}
@@ -285,16 +261,16 @@ const Subject_screen = ({ navigation }) => {
                     />
                 </View>
                 <View style={{ flex: 0.4, flexDirection: 'row' }}>
-                <View style={{ flex: 0.4 }}>
-    <TouchableOpacity style={[styles.button2, { width: '100%',height:"30%",margin:10 }]} onPress={handleButtonPress}>
-        <Text style={{ color: '#FFFFFF', fontSize: 18 }}>Pre</Text>
-    </TouchableOpacity>
-</View>
-<View style={{ flex: 0.4 }}>
-    <TouchableOpacity style={[styles.button2, { width: '100%',height:"30%",margin:10 }]} onPress={handleButtonPress}>
-        <Text style={{ color: '#FFFFFF', fontSize: 18 }}>Next</Text>
-    </TouchableOpacity>
-</View>
+                    <View style={{ flex: 1,alignItems:'flex-start' }}>
+                        <TouchableOpacity style={[styles.button2, { width: '70%', height: "30%", margin: 10 }]} onPress={back}>
+                            <Text style={{ color: '#FFFFFF', fontSize: 18 ,fontWeight:'bold'}}>Pre</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 1,alignItems:'flex-end'}}>
+                        <TouchableOpacity style={[styles.button2, { width: '70%', height: "30%", margin: 10 }]} onPress={handleButtonPress}>
+                            <Text style={{ color: '#FFFFFF', fontSize: 18 ,fontWeight:'bold'}}>Next</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -307,9 +283,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center', backgroundColor: '#18181B'
     }, button2: {
         backgroundColor: '#26272B',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 2,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 2,
     },
     container: {
         flex: 1,
