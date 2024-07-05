@@ -27,6 +27,9 @@ Download and install the apk.😊
 <td><img src="https://github.com/Dileesha-abilash/Z_score_React_Native/assets/94125793/3ad8d852-cdfd-4bbc-93d3-19aa236abaa2" alt="Screenshot_2024-07-05-11-03-38-140_com dileeshaAbilash Zed" width="200"/></td>
 </tr>
 </table>
+
+
 ## Issues And Future Development
+---
 - Make Ui more User Friendly
 - Cloud Use Free-tire so Waiting Time is 30sec
