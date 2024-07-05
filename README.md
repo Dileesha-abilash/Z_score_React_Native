@@ -8,7 +8,7 @@ Download and install the apk.😊
 ---
 
 - React Native - Front End
-- Python - Backend Api 
+- Python - Backend Api (https://github.com/Dileesha-abilash/Z_score_api)
 - Render.com - Cloud 
 ## Features 
 ---
